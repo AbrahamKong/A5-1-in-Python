@@ -5,6 +5,8 @@ key = input("Please enter a random number: ")
 type(key)
 
 # Convert to Binary
-# key = '{:64b}'.format(key)
-key = bin(key)
+key = format(key, '#064b')
+# key = bin(key)
 print(key)
+
+key.x = 
