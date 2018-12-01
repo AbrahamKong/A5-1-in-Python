@@ -34,10 +34,23 @@ x = key_x[7] # Get the 8th bit
 y = key_y[9] # Get the 10th bit
 z = key_z[9] # Get the 10th bit
 
+# Find out majority vote
+vote = maj()
+
+# Shift
+if x == vote : step_x()
+if y == vote : step_y()
+if z == vote : step_z() 
+
+print("new X: " + key_x)
+print("new Y: " + key_y)
+print("new Z: " + key_z)
+print("new keystream: " + key_x + key_y + key_z)
+print("new bit: " + str(new_bit()))
 
 
 # majority function
-def maj(key_x, key_y, key_z):
+def maj:
 	vote = collections.Counter(x = x, y = y, z = z) #Counter for Clocking bits
 	return max(vote[0], vote[1]) # Return the majority vote
 
