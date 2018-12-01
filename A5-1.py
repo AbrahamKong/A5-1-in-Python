@@ -34,8 +34,9 @@ x = key_x[7] # Get the 8th bit
 y = key_y[9] # Get the 10th bit
 z = key_z[9] # Get the 10th bit
 
-# Find out majority vote
-vote = maj()
+# majority function
+c = collections.Counter(x = x, y = y, z = z)
+vote = max(c[0], c[1]) # Return the majority vote
 
 # Shift
 if x == vote : step_x()
@@ -46,18 +47,10 @@ print("new X: " + key_x)
 print("new Y: " + key_y)
 print("new Z: " + key_z)
 print("new keystream: " + key_x + key_y + key_z)
-print("new bit: " + str(new_bit()))
+new_bit()
 
 
-# majority function
-def maj:
-	vote = collections.Counter(x = x, y = y, z = z) #Counter for Clocking bits
-	return max(vote[0], vote[1]) # Return the majority vote
-
-	# testing
-	# print "maj vote: ", maj(key_x, key_y, key_z)
-
-def step_x:
+def step_x():
 	# 4 bits used to compute the new first bit
 	x1 = key_x[13]
 	x2 = key_x[16]
@@ -67,7 +60,7 @@ def step_x:
 	key_x = str(x_new_first_bit) + key_x[:18]
 
 
-def step_y:
+def step_y():
 	# 2 bits used to compute the new first bit
 	y1 = key_y[20]
 	y2 = key_y[21]
@@ -76,7 +69,7 @@ def step_y:
 	key_y = str(y_new_first_bit) + key_y[:21]
 
 
-def step_z:
+def step_z():
 	# 4 bits used to compute the new first bit
 	z1 = key_z[7]
 	z2 = key_z[20]
@@ -85,10 +78,12 @@ def step_z:
 	z_new_first_bit = int(z1) ^ int(z2) ^ int(z3) ^ int(z4)
 	key_z = str(z_new_first_bit) + key_z[:22]
 
-def new_bit:
+def new_bit():
 	# Get the last bit of each register
 	x_last = key_x[18]
 	y_last = key_y[21]
 	z_last = key_z[22]
-	return x ^ y ^ z
+	new_bit = int(x) ^ int(y) ^ int(z)
+	print("new bit: " + str(new_bit))
+	return new_bit
 
